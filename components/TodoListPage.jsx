@@ -164,8 +164,8 @@ const TodoListPage = ({ taskData }) => {
                 {!editing && (
                   <div
                     key={task.id}
-                    className={`flex justify-center ${
-                      task.isCompleted ? "card-completed" : ""
+                    className={` ${
+                      task.isCompleted ? "card-completed" : "card"
                     }`}
                   >
                     <p>

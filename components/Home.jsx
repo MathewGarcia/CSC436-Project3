@@ -22,7 +22,6 @@ const Home = () => {
       setCurrentUser(user);
     };
     fetchUser();
-
     getTasks()
       .then((data) => {
         setAllTasks(data);
@@ -102,15 +101,23 @@ const Home = () => {
 
   return (
     <div>
-      <button
-        className={"plus-sign mx-2 my-2"}
-        onClick={() => {
-          if (!currentUser) {
-            setMessage("Please login to create a new list");
-          }
-          createForm();
-        }}
-      ></button>
+      <div className="tooltip">
+        <button
+          className={"plus-sign mx-2 my-2"}
+          onClick={() => {
+            if (!currentUser) {
+              setMessage("Please login to create a new list");
+            }
+            createForm();
+          }}
+        >
+          {" "}
+        </button>
+        <span className="tooltiptext">
+          {showForm ? "Close" : "Create new post"}
+        </span>
+      </div>
+
       {showForm && (
         <form onSubmit={handleSubmit}>
           <label>Title:</label>
@@ -154,19 +161,32 @@ const Home = () => {
           .map((task) => {
             return (
               <div key={task.id} className={"card"}>
-                <p className={"card-content"}>
-                  <button
-                    className={
-                      task.priority === 1 ? "filled-star" : "hollow-star"
-                    }
-                    onClick={() => toggleTaskPriority(task.id, task.priority)}
-                  />
-                  <Link href={`/task/${task.id}`}>{task.title}</Link>
-                </p>
+                <Link href={`/task/${task.id}`}>
+                  <p className={" flex justify-center card-content"}>
+                    <button
+                      className={
+                        task.priority === 1 ? "filled-star" : "hollow-star"
+                      }
+                      onClick={() => toggleTaskPriority(task.id, task.priority)}
+                    />
+                    <Link href={`/task/${task.id}`}>{task.title}</Link>
+                  </p>
+                  <p className="flex justify-center">
+                    {" "}
+                    <Link
+                      className={"link-to"}
+                      href={`/profile/${task.user_id}`}
+                    >
+                      <small>Created by : {task.userName}</small>
+                    </Link>
+                  </p>
+                </Link>
               </div>
             );
           })}
-      {!loading && !currentUser && <div className={"error"}>{message} </div>}
+      {!loading && !currentUser && message && (
+        <div className={"error"}>{message} </div>
+      )}
     </div>
   );
 };

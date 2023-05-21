@@ -18,8 +18,10 @@ const Profile = ({ userData }) => {
       <p>{userData.username}</p>
       {tasks.map((task) => {
         return (
-          <div key={task.id}>
-            <Link href={`/task/${task.id}`}>{task.title}</Link>
+          <div key={task.id} className="card">
+            <Link className="card-content" href={`/task/${task.id}`}>
+              {task.title}
+            </Link>
           </div>
         );
       })}

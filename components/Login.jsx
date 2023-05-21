@@ -41,8 +41,8 @@ const Login = () => {
       {!loading && !hide && <div className="error"> {message} </div>}
       {loading && <div>Loading...</div>}
       {!loading && !currentUser && (
-        <div className={"flex items-center justify-center"}>
-          <form onSubmit={handleSubmit}>
+        <div className={"login-page "}>
+          <form onSubmit={handleSubmit} className={"login-form"}>
             <div className="block">
               <label>Email:</label>
               <input value={email} onChange={(e) => setEmail(e.target.value)} />

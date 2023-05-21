@@ -54,8 +54,8 @@ const Register = () => {
   return (
     <>
       {!hide && <div className="error"> {message} </div>}
-      <div className={"flex items-center justify-center"}>
-        <form onSubmit={register}>
+      <div className={"login-page"}>
+        <form onSubmit={register} className="login-form contianer">
           <div className="block">
             <label>Email:</label>
             <input

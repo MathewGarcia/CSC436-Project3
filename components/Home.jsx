@@ -161,14 +161,14 @@ const Home = () => {
           .map((task) => {
             return (
               <div key={task.id} className={"card"}>
+                <button
+                  className={
+                    task.priority === 1 ? "filled-star" : "hollow-star"
+                  }
+                  onClick={() => toggleTaskPriority(task.id, task.priority)}
+                />
                 <Link href={`/task/${task.id}`}>
                   <p className={" flex justify-center card-content"}>
-                    <button
-                      className={
-                        task.priority === 1 ? "filled-star" : "hollow-star"
-                      }
-                      onClick={() => toggleTaskPriority(task.id, task.priority)}
-                    />
                     <Link href={`/task/${task.id}`}>{task.title}</Link>
                   </p>
                   <p className="flex justify-center">
